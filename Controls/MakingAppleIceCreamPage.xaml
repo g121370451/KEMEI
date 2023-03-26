@@ -1,0 +1,34 @@
+﻿<Page x:Class="IceCream.Controls.MakingAppleIceCreamPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IceCream.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="800"
+      x:Name="AppleMakePage"
+      Title="MakingAppleIceCreamPage">
+    <Border Background="White" CornerRadius="0" BorderThickness="0">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock x:Name="Text1"></TextBlock>
+                        <Button x:Name="makingButton" Click="Button_Click">制作草莓冰激凌...</Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1">
+                <ListBox>
+                    <ListBoxItem Content="111" Background="AliceBlue"></ListBoxItem>
+                    <ListBoxItem Content="111"></ListBoxItem>
+                    <ListBoxItem Content="111"  Background="AliceBlue"></ListBoxItem>
+                </ListBox>
+            </Border>
+        </Grid>
+    </Border>
+</Page>

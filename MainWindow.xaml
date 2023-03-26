@@ -1,0 +1,189 @@
+﻿<Window x:Class="IceCream.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IceCream"
+        xmlns:convert="clr-namespace:IceCream.Converts"
+        xmlns:controls ="clr-namespace:IceCream.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1024" WindowStyle="SingleBorderWindow" ResizeMode="NoResize"
+        Background="Transparent" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <convert:MakingTypeConverter x:Key="MakingTypeConverter"></convert:MakingTypeConverter>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="MainMenuButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#63BCFB"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#63BCFB"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#63BCFB"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#63BCFB"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Background="Transparent">
+        <Border Background="#FF37A0EA" CornerRadius="0" BorderThickness="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="0" Height="45" Width="45" RadiusX="10" RadiusY="10" VerticalAlignment="Center">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Resources/高山.png" Stretch="Uniform"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="70"/>
+                        </Grid.RowDefinitions>
+                        <Button Style="{DynamicResource MainMenuButton}" Background="Transparent" Grid.Row="0" BorderThickness="0" Height="50" Width="50" Click="Click_First_Menu_Button">
+                            <Button.Content>
+                                <Image Source="Resources/库存.png" Stretch="Uniform" Width="25"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Style="{DynamicResource MainMenuButton}" Background="Transparent" Grid.Row="1" BorderThickness="0" Height="50" Width="50" Click="Click_Second_Menu_Button">
+                            <Button.Content>
+                                <Image Source="Resources/制作.png" Stretch="Uniform" Width="25"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Style="{DynamicResource MainMenuButton}" Background="Transparent" Grid.Row="2" BorderThickness="0" Height="50" Width="50" Click="Click_Third_Menu_Button">
+                            <Button.Content>
+                                <Image Source="Resources/制作.png" Stretch="Uniform" Width="25"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </Grid>
+                <Border Grid.Column="1" Background="Transparent">
+                    <Frame  x:Name="ShowPageChanged" NavigationUIVisibility="Hidden"/>
+                    <!--<Border Background="White" CornerRadius="20" BorderThickness="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition MinHeight="120" Height="120"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Grid.Row="0" Margin="5">
+                                <GroupBox.Header>
+                                    <TextBlock Text="当前余量"/>
+                                </GroupBox.Header>
+                                <GroupBox.Content>
+                                    <Grid Margin="3" Background="AliceBlue">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <controls:MediumSizeButtons Grid.Column="0" Margin="2" text1="冰激凌余量" Remaining="9" Mount="100" imageSource="Resources/冰激凌.png"/>
+                                        <controls:MediumSizeButtons Grid.Column="1" Margin="2" text1="巧克力余量" Remaining="64" Mount="100" imageSource="Resources/巧克力.png"/>
+                                        <controls:MediumSizeButtons Grid.Column="2" Margin="2" text1="草莓余量" Remaining="64" Mount="100"  imageSource="Resources/草莓干.png"/>
+                                    </Grid>
+                                </GroupBox.Content>
+                            </GroupBox>
+                            <GroupBox Grid.Row="1" Margin="5">
+                                <GroupBox.Header>
+                                    <TextBlock Text="补充容量"/>
+                                </GroupBox.Header>
+                                <GroupBox.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <controls:ReplenishButton Grid.Column="0" RemainingProcessOn="9" MountProcessOn="100" text1="补充冰激凌容量"/>
+                                        <controls:ReplenishButton Grid.Column="1" RemainingProcessOn="64" MountProcessOn="100" text1="补充巧克力容量"/>
+                                        <controls:ReplenishButton Grid.Column="2" RemainingProcessOn="64" MountProcessOn="100" text1="补充草莓容量"/>
+                                    </Grid>
+                                </GroupBox.Content>
+                            </GroupBox>
+                            -->
+                    <!--<GroupBox Grid.Row="1" Margin="5">
+                                <GroupBox.Header>
+                                    <TextBlock Text="选择制作的样式"/>
+                                </GroupBox.Header>
+                                <GroupBox.Content>
+                                    <StackPanel Margin="3" Background="#EFF7FD" RadioButton.Checked ="StackPanel_Checked">
+                                        <RadioButton Name="first" IsChecked="{Binding CurrentType,Converter={StaticResource MakingTypeConverter},ConverterParameter=first}">first</RadioButton>
+                                        <RadioButton Name="two" IsChecked="{Binding CurrentType,Converter={StaticResource MakingTypeConverter},ConverterParameter=two}">two</RadioButton>
+                                    </StackPanel>
+                                </GroupBox.Content>
+                            </GroupBox>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MinWidth="100" Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border  Grid.Column="0" Background="#EFF7FD">
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Background="#EFF7FD" Foreground="Black" Content="正在执行的操作"/>
+                                </Border>
+                                <TextBlock Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" x:Name="CurrentStatus" Text="正在制作草莓冰激凌 添加草莓中..."/>
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <ProgressBar HorizontalAlignment="Center" VerticalContentAlignment="Center"
+                             Height="20" Width="500"></ProgressBar>
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Button x:Name="add" HorizontalAlignment="Left" Margin="5" Padding="3" Click="add_Click">add</Button>
+                                <Button x:Name="make" HorizontalAlignment="Right" Margin="5" Padding="3" Click="make_Click">make</Button>
+                            </Grid>-->
+                    <!--
+                        </Grid>
+                    </Border>-->
+                </Border>
+            </Grid>
+        </Border>
+    </Border>
+</Window>
